@@ -9,6 +9,11 @@ namespace CsharpInDepthTests
         public delegate void MyDelegate(string input);
 
         public event MyDelegate MyEvent;
+
+        void FireEvent()
+        {
+            MyEvent("input");
+        }
     }
 
     [TestClass]
