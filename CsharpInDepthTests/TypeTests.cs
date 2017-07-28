@@ -221,5 +221,30 @@ namespace CsharpInDepthTests
             int? i = null;
             int j = (int)i;
         }
+
+        [TestMethod]
+        public void LiftedOperatorTest()
+        {
+            DateTime? d = null;
+
+            // Invalid
+            //TimeSpan result = d - new DateTime();
+
+            TimeSpan? result = d - new DateTime();
+
+            Assert.AreEqual(null, result);
+        }
+
+        [TestMethod]
+        public void NullCoalescingTest()
+        {
+            int? i = null;
+
+            int result = i ?? 1;
+
+            // Invalid: Cannot implicitly convert type 'int?' to 'int'
+            //int resultA = i ?? i;
+            //int resultB = i ?? null;
+        }
     }
 }
