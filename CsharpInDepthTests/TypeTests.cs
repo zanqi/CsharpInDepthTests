@@ -246,5 +246,18 @@ namespace CsharpInDepthTests
             //int resultA = i ?? i;
             //int resultB = i ?? null;
         }
+
+        [TestMethod]
+        public void LiftedComparisonTest()
+        {
+            int? i = 2;
+            Assert.IsFalse(i > null, "Comparing with null always produces false");
+            Assert.IsFalse(null < i, "Comparing with null always produces false");
+
+            i = null;
+            Assert.IsFalse(null > i, "Comparing with null always produces false");
+
+            // VB can't compare with Nothing
+        }
     }
 }
