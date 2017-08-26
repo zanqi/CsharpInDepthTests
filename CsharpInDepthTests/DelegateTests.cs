@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
+using System.Threading;
 
 namespace CsharpInDepthTests
 {
@@ -61,6 +62,17 @@ namespace CsharpInDepthTests
 
             // Return type Covariance supported
             MyEvent += MyMethod2;
+        }
+
+        void MyMethod() { }
+        void MyMethod(object sender, EventArgs e) { }
+
+        [TestMethod]
+        public void MethodGroupConversionCanHandelOverload()
+        {
+            // Try F12 on MyMehod below
+            ThreadStart x = MyMethod; // take the void MyMethod()
+            EventHandler y = MyMethod; // take the void MyMethod(object sender, EventArgs e) 
         }
     }
 }
