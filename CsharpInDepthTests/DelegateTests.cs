@@ -74,5 +74,21 @@ namespace CsharpInDepthTests
             ThreadStart x = MyMethod; // take the void MyMethod()
             EventHandler y = MyMethod; // take the void MyMethod(object sender, EventArgs e) 
         }
+
+        [TestMethod]
+        public void DelegateWithoutParam()
+        {
+            MyEvent += delegate { return null; };
+        }
+
+        [TestMethod]
+        public void DelegateWithoutParamNotWorkWithOverload()
+        {
+            new Thread(delegate () { Console.WriteLine("t1"); });
+            new Thread(delegate (object o) { Console.WriteLine("t2"); });
+
+            //The call is ambiguous between the following methods or properties: 'Thread.Thread(ThreadStart)' and 'Thread.Thread(ParameterizedThreadStart)'
+            //new Thread(delegate { Console.WriteLine(); });
+        }
     }
 }
